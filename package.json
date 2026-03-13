@@ -1,0 +1,13 @@
+{
+  "name": "kindline-guide",
+  "private": true,
+  "type": "module",
+  "description": "Split-interface, bounded reflective-support artifact with deterministic audit and scripted evaluation on Cloudflare Pages + Workers AI.",
+  "scripts": {
+    "dev": "wrangler pages dev public --ai AI",
+    "deploy": "wrangler pages deploy public"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

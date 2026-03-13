@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KindLine Guide</title>
+    <meta
+      name="description"
+      content="A bounded reflective support tool for stressful moments. The participant view keeps support choices visible without exposing research instrumentation."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="participant-page">
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Bounded reflective support</p>
+          <h1 id="app-title">KindLine Guide</h1>
+          <p id="app-subtitle" class="hero-subtitle">
+            KindLine Guide is a brief reflective support tool for stressful moments. It can help you sort what happened,
+            name what feels hardest, and choose one next step. It is not diagnosis, therapy, crisis support, or medical care.
+          </p>
+          <p class="developer-byline">Developed by Ishan Bangroo</p>
+        </div>
+        <div class="hero-stack">
+          <div class="hero-card">
+            <p class="hero-card-title">What it does</p>
+            <p>It stays narrow on purpose: reflective support, calm clarification, and one small next step around a difficult moment.</p>
+          </div>
+          <div class="hero-card">
+            <p class="hero-card-title">Why there is a support contract</p>
+            <p>You can guide reply language, tone, and context before generation without having to label yourself or explain everything up front.</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="participant-grid">
+        <section class="panel support-panel" aria-labelledby="support-modes-heading">
+          <div class="panel-head">
+            <h2 id="support-modes-heading">Support style</h2>
+            <span class="pill">Participant view</span>
+          </div>
+          <p class="helper-text">
+            The default is <strong>Start broad</strong>. You do not need to decide what category you fit before writing.
+          </p>
+          <div id="selected-mode-summary" class="mode-summary"></div>
+
+          <details class="subtle-details style-picker">
+            <summary>Change support style</summary>
+            <p class="helper-text">These are support modes, not labels about you. Leave the default if you are unsure.</p>
+            <div id="support-mode-cards" class="support-mode-grid"></div>
+          </details>
+
+          <details class="subtle-details" open>
+            <summary>Set a support contract</summary>
+            <p id="contract-note" class="helper-text">
+              These preferences guide response style. They are not labels about you and they are not a diagnosis.
+            </p>
+            <div class="field-group">
+              <label for="reply-language-select">Reply language</label>
+              <select id="reply-language-select"></select>
+            </div>
+            <div class="field-group">
+              <label for="reply-tone-select">Reply tone</label>
+              <select id="reply-tone-select"></select>
+            </div>
+            <div class="field-group">
+              <label for="meaning-style-select">How should the tool interpret my wording?</label>
+              <select id="meaning-style-select"></select>
+              <p class="helper-text">Use this if your wording is colloquial, indirect, or shaped by cultural or community context.</p>
+            </div>
+            <div class="field-group no-margin">
+              <label for="context-note">Context and meaning note</label>
+              <textarea id="context-note" rows="3" spellcheck="false"></textarea>
+              <p class="helper-text">You can mention language, family, community, faith, work, school, or cultural context that affects how your wording should be read. Keep personal details minimal.</p>
+            </div>
+          </details>
+
+          <details class="subtle-details">
+            <summary>Why the tool may narrow or refuse a reply</summary>
+            <p>
+              The tool stays inside reflective support. If a message looks like crisis risk, medical care, or a general task that does not fit this purpose,
+              it switches to a narrower reply instead of pretending to know more than it should.
+            </p>
+          </details>
+          <details class="subtle-details">
+            <summary>Voice and privacy note</summary>
+            <p>
+              Browser voice output works more reliably than browser speech input. Microphone access needs HTTPS and depends on browser support. Typed input is always the safest fallback.
+            </p>
+          </details>
+          <details class="subtle-details">
+            <summary>One practical privacy note</summary>
+            <p>
+              Keep personal details minimal. Use the session export only if you want a copy on your own device.
+            </p>
+          </details>
+          <div id="contract-summary" class="mode-summary compact-summary"></div>
+          <div class="button-row compact-row">
+            <button id="clear-button" class="secondary-button" type="button">Start new session</button>
+            <button id="export-button" class="secondary-button" type="button">Download session</button>
+          </div>
+          <div id="status-box" class="status-box" role="status" aria-live="polite">Ready.</div>
+        </section>
+
+        <section class="panel chat-panel" aria-labelledby="chat-heading">
+          <div class="panel-head">
+            <h2 id="chat-heading">Reflective conversation</h2>
+            <span id="session-pill" class="pill">New session</span>
+          </div>
+          <div id="chat-log" class="chat-log"></div>
+          <form id="composer" class="composer">
+            <label class="sr-only" for="message-input">Message</label>
+            <textarea
+              id="message-input"
+              rows="4"
+              spellcheck="false"
+              placeholder="Write what happened and what feels hardest right now. One short paragraph is enough."
+            ></textarea>
+            <div class="composer-actions wrap-actions">
+              <label class="toggle-chip" for="speak-toggle">
+                <input id="speak-toggle" type="checkbox" />
+                <span>Speak reply</span>
+              </label>
+              <button id="mic-button" class="secondary-button" type="button">Use voice</button>
+              <button id="send-button" class="primary-button" type="submit">Send</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

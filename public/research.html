@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KindLine Research Console</title>
+    <meta
+      name="description"
+      content="A researcher-facing inspection console for KindLine Guide."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="research-page">
+    <div class="page-shell">
+      <header class="hero research-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Research console</p>
+          <h1 id="research-title">KindLine Research Console</h1>
+          <p id="research-subtitle" class="hero-subtitle">
+            This view is for support-contract testing, gate tuning, deterministic artifact audit, scripted evaluation, and exportable diagnostics. It is intentionally separated from the participant-facing interface.
+          </p>
+          <p class="developer-byline">Prototype by Ishan Bangroo</p>
+        </div>
+        <div class="hero-card">
+          <p class="hero-card-title">Purpose</p>
+          <p>
+            This page keeps inspection features visible for system analysis and methods reporting without making participants manage them.
+          </p>
+          <p class="hero-inline-link"><a href="/">Open participant view</a></p>
+        </div>
+      </header>
+
+      <main class="research-grid">
+        <section class="panel settings-panel" aria-labelledby="settings-heading">
+          <div class="panel-head">
+            <h2 id="settings-heading">Research controls</h2>
+            <span id="model-pill" class="pill">Model: loading</span>
+          </div>
+
+          <div class="field-group">
+            <label for="intervention-select">Support mode</label>
+            <select id="intervention-select"></select>
+            <p id="intervention-description" class="helper-text"></p>
+            <p id="intervention-theory" class="helper-text helper-emphasis"></p>
+          </div>
+
+          <div class="field-group">
+            <label for="reply-language-select">Reply language</label>
+            <select id="reply-language-select"></select>
+          </div>
+
+          <div class="field-group">
+            <label for="reply-tone-select">Reply tone</label>
+            <select id="reply-tone-select"></select>
+          </div>
+
+          <div class="field-group">
+            <label for="meaning-style-select">How should the tool interpret the wording?</label>
+            <select id="meaning-style-select"></select>
+            <p class="helper-text">Use this to test literal, colloquial, indirect, or culture-shaped wording without forcing diagnostic labels.</p>
+          </div>
+
+          <div class="field-group">
+            <label for="context-note">Context and meaning note</label>
+            <textarea id="context-note" rows="3" spellcheck="false" placeholder="Optional: language, family, community, faith, work, school, or cultural context to respect."></textarea>
+            <p class="helper-text">The console passes this note explicitly rather than inferring identity or culture, and it can change how indirect or context-dependent wording is interpreted.</p>
+          </div>
+
+          <div class="field-group">
+            <label for="threshold-range">Gate threshold</label>
+            <div class="range-row">
+              <input id="threshold-range" type="range" min="0.30" max="0.90" step="0.01" value="0.62" />
+              <output id="threshold-value" for="threshold-range">0.62</output>
+            </div>
+            <p class="helper-text">
+              This control exists only in the research console. The participant-facing view uses the support mode default instead.
+            </p>
+          </div>
+
+          <div id="contract-summary" class="mode-summary compact-summary"></div>
+          <div class="button-row compact-row wrap-row">
+            <button id="clear-button" class="secondary-button" type="button">Clear session</button>
+            <button id="export-button" class="secondary-button" type="button">Download log</button>
+            <button id="audit-button" class="secondary-button" type="button">Run artifact audit</button>
+            <button id="eval-button" class="secondary-button" type="button">Run model evaluation</button>
+          </div>
+
+          <div id="status-box" class="status-box" role="status" aria-live="polite">Ready.</div>
+        </section>
+
+        <section class="panel chat-panel" aria-labelledby="chat-heading">
+          <div class="panel-head">
+            <h2 id="chat-heading">Inspection conversation</h2>
+            <span id="session-pill" class="pill">New session</span>
+          </div>
+          <div id="chat-log" class="chat-log"></div>
+          <form id="composer" class="composer">
+            <label class="sr-only" for="message-input">Message</label>
+            <textarea
+              id="message-input"
+              rows="4"
+              spellcheck="false"
+              placeholder="Type a prompt to inspect support-mode behavior, support-contract effects, safety boundaries, or fallback routing."
+            ></textarea>
+            <div class="composer-actions">
+              <button id="send-button" class="primary-button" type="submit">Send</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel diagnostics-panel" aria-labelledby="diagnostics-heading">
+          <div class="panel-head">
+            <h2 id="diagnostics-heading">Diagnostics</h2>
+          </div>
+          <div id="latest-diagnostics" class="diagnostics-card">
+            <p>No turn has been processed yet.</p>
+          </div>
+          <div id="audit-results" class="evaluation-results">
+            <p>Run the artifact audit to check support-contract handling, interface separation, threshold handling, hard boundaries, and fallback-policy invariants.</p>
+          </div>
+          <div id="evaluation-results" class="evaluation-results">
+            <p>Run the model evaluation to inspect crisis, medical, multilingual, and benign support cases.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/research.js"></script>
+  </body>
+</html>
